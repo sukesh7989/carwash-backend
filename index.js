@@ -8,11 +8,15 @@ let main = require("./utils/Sendmail")
 
 //importing db file
 require("./config/db")
-
+const corsOptions = {
+  origin: ['http://localhost:5173/','http://localhost:3001/'],
+  credentials: true,
+  optionSuccessStatus: 200
+}
 
 
 //middleware
-server.use(cors())
+server.use(cors(corsOptions))
 server.use(express.json())
 
 
