@@ -12,7 +12,7 @@ const customerSchema = mongoose.Schema({
     confirmpassword :{
         type: String,
         required: true
-    }
+    },otp: {type: String, }
 });
 
 const Customer = mongoose.model('Customer', customerSchema);

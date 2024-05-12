@@ -14,15 +14,31 @@ const transporter = nodemailer.createTransport({
 async function main(email) {
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: '"Maddison Foo Koch 👻" renukajalluri20@gmail.com', // sender address
+    from: '"Maddison Foo Koch 👻" sukesh.ketha@gmail.com', // sender address
     to: email, // list of receivers
     subject: "Hello ✔", // Subject line
     text: "Hello world?", // plain text body
-    html: "<b>Thank you for giving your feedback . <br/> please  visit again to our if you like our service</b>", // html body
+    html: "<b>Thank you for giving your feedback . <br/> please  visit again to our Car Wash if you like our service</b>", // html body
   });
 
   console.log("Message sent: %s", info.messageId);
   // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 }
 
-module.exports =main;
+
+// async..await is not allowed in global scope, must use a wrapper
+async function sendOtpFn(email,otp) {
+  // send mail with defined transport object
+  const info = await transporter.sendMail({
+    from: '"Maddison Foo Koch 👻" sukesh.ketha@gmail.com', // sender address
+    to: email, // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: `${otp}`, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+}
+
+module.exports ={main,sendOtpFn};
