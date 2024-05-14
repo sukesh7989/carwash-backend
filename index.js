@@ -20,6 +20,11 @@ server.use(cors())
 
 server.use(express.json())
 
+const path = require("path");
+server.get("/", (req, res) => {
+  server.use(express.static(path.resolve(__dirname, "frontend", "build")));
+res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+});
 
 
 
