@@ -5,6 +5,8 @@ let feedback = require("./models/Feedback");
 let cors = require("cors")
 let server = express();
 let {main,sendOtpFn} = require("./utils/Sendmail")
+const dotenv  = require('dotenv')
+dotenv.config()
 
 //importing db file
 require("./config/db")
@@ -144,8 +146,8 @@ server.post("/updatePassword", async (req, res) => {
 })
 
 
-let port = 8000;
-server.listen(port, () => {
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
   console.log("server running...")
 })
 
