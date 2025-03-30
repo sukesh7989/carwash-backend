@@ -18,18 +18,22 @@ const corsOptions = {
 
 //middleware
 server.use(cors({
-  origin:["https://carwash-frontend-dq3u.vercel.app/"],
-  methods:["GET , POST , PUT , DELETE"],
+  origin: ["https://carwash-frontend-dq3u.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
-}))
+}));
 // server.options('*', cors(corsOptions)); // Handle preflight OPTIONS requests for all routes
 
 server.use(express.json())
 
-const path = require("path");
+// const path = require("path");
+// server.get("/", (req, res) => {
+//   server.use(express.static(path.resolve(__dirname, "frontend", "build")));
+// res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+// });
+
 server.get("/", (req, res) => {
-  server.use(express.static(path.resolve(__dirname, "frontend", "build")));
-res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  res.send("Car Wash API Running...");
 });
 
 
@@ -51,7 +55,7 @@ server.post("/signup", async (req, res) => {
     return res.status(400).send("Passwords do not match")
   }
   else {
-    let newUser = Customer.create(req.body);
+    let newUser =await Customer.create(req.body);
     return res.status(200).send("Account created successfully")
   }
 
