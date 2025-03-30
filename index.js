@@ -17,7 +17,11 @@ const corsOptions = {
 }
 
 //middleware
-server.use(cors())
+server.use(cors({
+  origin:["https://carwash-frontend-dq3u.vercel.app/"],
+  methods:["GET , POST , PUT , DELETE"],
+  credentials: true,
+}))
 // server.options('*', cors(corsOptions)); // Handle preflight OPTIONS requests for all routes
 
 server.use(express.json())
